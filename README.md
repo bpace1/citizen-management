@@ -1,6 +1,6 @@
 # Citizen Management 🏛️
 
-Sistema de procesamiento y gestión de registros de ciudadanos, desarrollado como solución al desafío técnico de Adhoc.
+Sistema de procesamiento y gestión de registros de ciudadanos.
 
 ---
 
@@ -38,7 +38,7 @@ citizen-management/
 
 ```bash
 # 1. Clonar el repositorio
-git clone <URL_DEL_REPO>
+git clone https://github.com/bpace1/citizen-management.git
 cd citizen-management
 
 # 2. Crear el entorno virtual

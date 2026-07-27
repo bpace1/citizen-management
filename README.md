@@ -83,6 +83,36 @@ pytest --cov --cov-report=html
 
 ---
 
+## Calidad de código
+
+El proyecto utiliza tres herramientas de análisis estático, todas configuradas en `pyproject.toml`:
+
+### Ruff — linter y orden de imports
+
+```bash
+python -m ruff check src/ tests/ scripts/
+```
+
+Reglas activas: `E` (estilo), `F` (errores lógicos), `I` (orden de imports), `UP` (modernización) y `B` (buenas prácticas). Longitud máxima de línea: 95 caracteres.
+
+### mypy — verificación de tipos estática
+
+```bash
+python -m mypy src/ tests/ scripts/
+```
+
+Configurado en modo `strict`: todas las funciones deben tener anotaciones completas, no se permiten tipos `Any` implícitos ni llamadas sin tipar.
+
+### Estado actual
+
+```
+ruff   → All checks passed!
+mypy   → Success: no issues found in 9 source files
+pytest → 53 passed, coverage: 100%
+```
+
+---
+
 ## Formato de los datos de entrada
 
 Los datos se reciben como una lista de tuplas con el esquema:

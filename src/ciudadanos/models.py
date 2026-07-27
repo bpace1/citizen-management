@@ -53,7 +53,8 @@ class Person:
         dni_limpio = self.dni.strip()
         if not dni_limpio.isdigit() or not (7 <= len(dni_limpio) <= 8):
             raise InvalidPersonDataError(
-                f"El DNI debe contener solo números y tener entre 7 y 8 caracteres. Se recibió: '{dni_limpio}'."
+                "El DNI debe contener solo números y tener entre 7 y 8 "
+                f"caracteres. Se recibió: '{dni_limpio}'."
             )
         object.__setattr__(self, "dni", dni_limpio)
 
@@ -81,7 +82,8 @@ class Person:
             raise InvalidPersonDataError("El apellido no puede estar vacío.")
         if not _NAME_PATTERN.match(apellido_limpio):
             raise InvalidPersonDataError(
-                f"El apellido contiene caracteres no permitidos. Se recibió: '{apellido_limpio}'."
+                "El apellido contiene caracteres no permitidos. "
+                f"Se recibió: '{apellido_limpio}'."
             )
         object.__setattr__(self, "apellido", apellido_limpio)
 
@@ -106,12 +108,14 @@ class Person:
             Una nueva instancia de ``Person`` con los datos validados.
 
         Raises:
-            InvalidPersonDataError: Si la edad es negativa, el DNI está vacío o su formato es inválido,
-                o si nombre/apellido están vacíos o tienen caracteres no permitidos.
+            InvalidPersonDataError: Si la edad es negativa, el DNI está vacío o su formato
+                es inválido, o si nombre/apellido están vacíos o tienen caracteres
+                no permitidos.
         """
         if not isinstance(record, tuple) or len(record) != 4:
             raise InvalidPersonDataError(
-                f"Se esperaba una tupla de 4 elementos (DNI, nombre, apellido, edad). Se recibió: {record}"
+                "Se esperaba una tupla de 4 elementos (DNI, nombre, apellido, edad). "
+                f"Se recibió: {record}"
             )
         dni, nombre, apellido, age = record
         return cls(dni=dni, nombre=nombre, apellido=apellido, age=age)

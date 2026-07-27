@@ -18,7 +18,6 @@ from ciudadanos.exceptions import (
 from ciudadanos.models import Person
 from ciudadanos.registro import DEFAULT_AGE_THRESHOLD, RegistroPersonas
 
-
 RAW_DATA = [
     ("11111111", "Pedro", "Paez", 24),
     ("22222222", "Ana", "Gomez", 31),

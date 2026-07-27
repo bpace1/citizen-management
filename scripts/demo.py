@@ -19,8 +19,9 @@ _ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(_ROOT / "src"))
 sys.path.insert(0, str(_ROOT))
 
-from ciudadanos import CiudadanosError, DEFAULT_AGE_THRESHOLD, RegistroPersonas
-from data.sample_records import SAMPLE_RECORDS
+from data.sample_records import SAMPLE_RECORDS  # noqa: E402
+
+from ciudadanos import DEFAULT_AGE_THRESHOLD, CiudadanosError, RegistroPersonas  # noqa: E402
 
 SEPARATOR = "-" * 50
 

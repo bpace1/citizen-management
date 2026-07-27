@@ -9,21 +9,24 @@ Sistema de procesamiento y gestión de registros de ciudadanos.
 ```
 citizen-management/
 ├── data/
+│   ├── __init__.py            # Hace que `data` sea importable como paquete
 │   └── sample_records.py      # Dataset de muestra del sistema legacy
 ├── scripts/
 │   └── demo.py                # Script de demostración interactiva
 ├── src/
 │   └── ciudadanos/
-│       ├── __init__.py        # API pública del paquete
+│       ├── __init__.py        # API pública del paquete (re-exporta todo)
 │       ├── exceptions.py      # Jerarquía de excepciones de dominio
 │       ├── models.py          # Modelo Person (inmutable y validado)
 │       └── registro.py        # RegistroPersonas con todas las operaciones
 ├── tests/
+│   ├── __init__.py            # Hace que `tests` sea un paquete reconocible
 │   ├── test_exceptions.py     # Tests de las excepciones de dominio
 │   ├── test_models.py         # Tests de Person
 │   └── test_registro.py       # Tests de RegistroPersonas
 ├── .gitignore
-├── pyproject.toml
+├── pyproject.toml             # Configuración del proyecto, pytest, mypy y ruff
+├── pyrightconfig.json         # Configuración de Pyright para el editor (VSCode)
 └── README.md
 ```
 

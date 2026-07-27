@@ -18,7 +18,7 @@ from ciudadanos.exceptions import (
 from ciudadanos.models import Person
 from ciudadanos.registro import DEFAULT_AGE_THRESHOLD, RegistroPersonas
 
-# ── Fixtures ─────────────────────────────────────────────────────────────────
+# Fixtures
 
 RAW_DATA = [
     ("11111111", "Pedro", "Paez", 24),
@@ -34,7 +34,7 @@ def registro() -> RegistroPersonas:
     return RegistroPersonas.from_raw_data(RAW_DATA)
 
 
-# ── Creación ──────────────────────────────────────────────────────────────────
+# Creación
 
 
 class TestRegistroCreation:
@@ -54,7 +54,7 @@ class TestRegistroCreation:
         assert all(isinstance(p, Person) for p in persons)
 
 
-# ── Formateo ──────────────────────────────────────────────────────────────────
+# Formateo
 
 
 class TestToDict:
@@ -79,7 +79,7 @@ class TestToDict:
         assert result["11111111"] == ("Pedro", "Paez", 24)
 
 
-# ── Extremos de edad ──────────────────────────────────────────────────────────
+# Extremos de edad
 
 
 class TestAgeExtremes:
@@ -104,7 +104,7 @@ class TestAgeExtremes:
             reg.get_youngest()
 
 
-# ── Promedio ──────────────────────────────────────────────────────────────────
+# Promedio
 
 
 class TestAverageAge:
@@ -118,7 +118,7 @@ class TestAverageAge:
             reg.average_age()
 
 
-# ── Segmentación ──────────────────────────────────────────────────────────────
+# Segmentación
 
 
 class TestSegmentByAge:
@@ -137,7 +137,7 @@ class TestSegmentByAge:
         assert len(menores) + len(mayores) == len(registro)
 
 
-# ── Acceso por DNI ────────────────────────────────────────────────────────────
+# Acceso por DNI
 
 
 class TestGetAgeByDni:
@@ -149,8 +149,11 @@ class TestGetAgeByDni:
             registro.get_age_by_dni("00000000")
 
 
-# ── Validación de datos crudos ───────────────────────────────────────────────
-def test_from_raw_data_with_invalid_name_raises() -> None:
-    data = [("1234567", "Juan123", "Perez", 20)]  # nombre inválido
-    with pytest.raises(InvalidPersonDataError):
-        RegistroPersonas.from_raw_data(data)
+# Validación de datos crudos
+
+
+class TestRawDataValidation:
+    def test_from_raw_data_with_invalid_name_raises(self) -> None:
+        data = [("1234567", "Juan123", "Perez", 20)]  # nombre inválido
+        with pytest.raises(InvalidPersonDataError):
+            RegistroPersonas.from_raw_data(data)

@@ -67,11 +67,23 @@ def main() -> None:
         for p in mayores:
             print(f"    · {p}")
 
+        # ── 4b. Segmentación con umbral custom (18) ───────────────────────────────
+        print(f"\n{SEPARATOR}")
+        print("4b. Segmentación con umbral custom (18 años):")
+        print(SEPARATOR)
+        menores_18, mayores_18 = registro.segment_by_age(threshold=18)
+        print("  Menores de 18:")
+        for p in menores_18:
+            print(f"    · {p}")
+        print("  Mayores o iguales a 18:")
+        for p in mayores_18:
+            print(f"    · {p}")
+
         # ── 5. Acceso eficiente por DNI ───────────────────────────────────────────
         print(f"\n{SEPARATOR}")
         print("5. Consulta de edad por DNI:")
         print(SEPARATOR)
-        dni_consulta = "33333333"
+        dni_consulta = "22222222"
         edad = registro.get_age_by_dni(dni_consulta)
         print(f"  Edad de la persona con DNI {dni_consulta}: {edad} años")
 

@@ -19,8 +19,9 @@ citizen-management/
 │       ├── models.py          # Modelo Person (inmutable y validado)
 │       └── registro.py        # RegistroPersonas con todas las operaciones
 ├── tests/
+│   ├── test_exceptions.py     # Tests de las excepciones de dominio
 │   ├── test_models.py         # Tests de Person
-│   └── test_registro.py      # Tests de RegistroPersonas
+│   └── test_registro.py       # Tests de RegistroPersonas
 ├── .gitignore
 ├── pyproject.toml
 └── README.md

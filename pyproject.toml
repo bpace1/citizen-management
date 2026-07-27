@@ -12,6 +12,8 @@ requires-python = ">=3.11"
 dev = [
     "pytest>=8.0",
     "pytest-cov>=5.0",
+    "mypy>=1.10",
+    "ruff>=0.5",
 ]
 
 [tool.setuptools.packages.find]
@@ -26,3 +28,15 @@ source = ["ciudadanos"]
 
 [tool.coverage.report]
 show_missing = true
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = "src"
+
+[tool.ruff]
+line-length = 95
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

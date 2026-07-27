@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
 
 from ciudadanos.exceptions import InvalidPersonDataError
 
@@ -24,7 +23,7 @@ _NAME_PATTERN = re.compile(r"^[A-Za-zÁÉÍÓÚáéíóúÑñ\s\-']+$")
 MAX_AGE: int = 150
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, slots=True)
 class Person:
     """Representa a una persona del padrón ciudadano.
 
@@ -46,7 +45,7 @@ class Person:
 
     def __post_init__(self) -> None:
         """Valida la coherencia de los datos tras la inicialización."""
-        # ---------- Normalización y validación de DNI ----------
+        # Normalización y validación de DNI
         if not isinstance(self.dni, str):
             raise InvalidPersonDataError(
                 f"El DNI debe ser texto. Se recibió: {self.dni}."
@@ -58,7 +57,7 @@ class Person:
             )
         object.__setattr__(self, "dni", dni_limpio)
 
-        # ---------- Validación de nombre ----------
+        # Validación de nombre
         if not isinstance(self.nombre, str):
             raise InvalidPersonDataError(
                 f"El nombre debe ser texto. Se recibió: {self.nombre}."
@@ -72,7 +71,7 @@ class Person:
             )
         object.__setattr__(self, "nombre", nombre_limpio)
 
-        # ---------- Validación de apellido ----------
+        # Validación de apellido
         if not isinstance(self.apellido, str):
             raise InvalidPersonDataError(
                 f"El apellido debe ser texto. Se recibió: {self.apellido}."
@@ -86,7 +85,7 @@ class Person:
             )
         object.__setattr__(self, "apellido", apellido_limpio)
 
-        # ---------- Validación de edad ----------
+        # Validación de edad
         if not isinstance(self.age, int) or self.age < 0:
             raise InvalidPersonDataError(
                 f"La edad debe ser un entero no negativo. Se recibió: {self.age}."
@@ -109,7 +108,6 @@ class Person:
         Raises:
             InvalidPersonDataError: Si la edad es negativa, el DNI está vacío o su formato es inválido,
                 o si nombre/apellido están vacíos o tienen caracteres no permitidos.
-            TypeError: Si el record no es una tupla de exactamente 4 elementos.
         """
         if not isinstance(record, tuple) or len(record) != 4:
             raise InvalidPersonDataError(
